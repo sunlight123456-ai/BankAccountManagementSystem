@@ -109,8 +109,13 @@ public class Main {
             System.out.println("金额必须是数字！ ");
             return;
         }
-        double amount = Double.parseDouble(amountStr);
-        accountService.deposit(currentAccount.getAccountId(),amount);
+        double initialDeposit = Double.parseDouble(amountStr);
+        boolean success = accountService.register(acconutId,password,ownerName,initialDeposit);
+        if(success) {
+            System.out.println("注册成功！请登录使用系统。");
+        }else{
+            System.out.println("注册失败！账户ID可能已存在。");
+        }
     }
     private void login(){
         System.out.println("\n-----用户登录-----");
